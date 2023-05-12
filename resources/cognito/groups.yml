@@ -1,0 +1,13 @@
+Resources:
+  CognitoUserPoolGroupDefault:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      Description: 'Default group for all users'
+      GroupName: ${self:custom.cognito.groupName.default}
+      UserPoolId: { Ref: UserPool }
+  CognitoUserPoolGroupA:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      Description: 'Other test group'
+      GroupName: ${self:custom.cognito.groupName.moderators}
+      UserPoolId: { Ref: UserPool }

@@ -1,0 +1,9 @@
+{
+    "user_pool_name": "${self:custom.stackPrefix}-userPool",
+    "user_client_name": "${self:custom.stackPrefix}-userClient",
+    "signup-users": "${self:custom.stackPrefix}-signUp",
+    "verify-token": "${self:custom.stackPrefix}-verifyToken",
+    "signin-users": "${self:custom.stackPrefix}-signIn",
+    "profile-users": "${self:custom.stackPrefix}-profile",
+    "table_name": "${self:custom.stackPrefix}-users-table"
+}
