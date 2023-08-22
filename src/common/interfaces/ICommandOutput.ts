@@ -1,8 +1,8 @@
-interface ICommandOutput {
+interface iControllerCommonInput {
   query?: any;
   parameters?: any;
   stage?: any;
   body?: any;
 }
 
-export default ICommandOutput;
+export default iControllerCommonInput;

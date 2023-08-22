@@ -9,6 +9,7 @@ yarn-error.log*
 .vscode/
 scripts/get-credentials.js
 
+*_output.json
 # Serverless
 admin.env
 .env

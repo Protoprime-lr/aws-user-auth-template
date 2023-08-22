@@ -1,0 +1,5 @@
+Resources:
+    SESemail:
+      Type: AWS::SES::ConfigurationSet
+      Properties:
+        Name: UserEmailService

@@ -2,15 +2,7 @@
 import dynamo from 'rebased/service/storage/dynamo';
 import { ErrorHandled } from 'rebased/util/error';
 import OPERATIONS from '../enums/dynamoOperationsEnum';
-import {
-  StatusCodes,
-  StatusMessages,
-  STATUS_PREFIX,
-} from '../enums/responseStatus';
-import {
-  IUserTableItem,
-  IUserById,
-} from '../../../signUp/interfaces/user.interface';
+import { StatusCodes } from '../enums/responseStatus';
 
 import {
   IFormatParams,
@@ -18,6 +10,7 @@ import {
   IQueryParams,
   ITableBuilder,
 } from './interfaces/TableRequestBuilder.interface';
+import { IUserById, IUserTableItem } from '../../interfaces/IUser';
 
 export default class TableRequestBuilder implements ITableBuilder {
   tableName?: string;
@@ -28,73 +21,33 @@ export default class TableRequestBuilder implements ITableBuilder {
     this.tableName = process.env.TABLE_NAME;
   }
 
-  queryItems = async (params: IQueryParams): Promise<IUserTableItem[]> => {
+  queryItems = async (params: IQueryParams): Promise<any> => {
     const finalParams = {
       ...params,
       ScanIndexForward: false,
       TableName: this.tableName,
     };
-    const { Items } = await dynamo.queryTable(finalParams);
 
-    if (!Items) {
-      throw new ErrorHandled(
-        StatusMessages.NOT_FOUND.replace(':item', 'ITEM'),
-        {
-          statusCode: 404,
-          code: StatusCodes.ITEM_NOT_FOUND,
-        }
-      );
-    }
-
-    return Items;
+    return dynamo.queryTable(finalParams);
   };
 
   getItem = async (payload: IUserById): Promise<IUserTableItem> => {
     this.formatDynamoParams({ input: { payload }, operation: OPERATIONS.GET });
-    console.log('PARAMS', JSON.stringify(this.params));
-    const { Item } = await dynamo.getItem(this.params);
-    return Item;
+    return dynamo.getItem(this.params);
   };
 
   createItem = async (payload: IUserTableItem, condition?: string) => {
-    try {
-      this.formatDynamoParams({
-        input: { payload, condition },
-        operation: OPERATIONS.PUT,
-      });
-      await dynamo.putItem(this.params);
-    } catch (error) {
-      if (error.message === StatusMessages.CONDITIONAL_FAILED) {
-        throw new ErrorHandled(
-          StatusMessages.ALREADY_EXISTS.replace(STATUS_PREFIX, 'USER'),
-          {
-            status: 409,
-            code: StatusCodes.ALREADY_EXISTS,
-          }
-        );
-      } else {
-        throw error;
-      }
-    }
+    this.formatDynamoParams({
+      input: { payload, condition },
+      operation: OPERATIONS.PUT,
+    });
+    return dynamo.putItem(this.params);
   };
 
   updateItem = async (payload: any) => {
-    try {
-      this.formatDynamoParams({ input: payload, operation: OPERATIONS.UPDATE });
+    this.formatDynamoParams({ input: payload, operation: OPERATIONS.UPDATE });
 
-      const { Attributes } = await dynamo.updateItem(this.params);
-
-      return Attributes;
-    } catch (error) {
-      if (error.message === StatusMessages.CONDITIONAL_FAILED) {
-        throw new ErrorHandled(StatusMessages.ALREADY_EXISTS, {
-          statusCode: 409,
-          code: StatusCodes.ALREADY_EXISTS,
-        });
-      } else {
-        throw error;
-      }
-    }
+    return dynamo.updateItem(this.params);
   };
 
   formatDynamoParams = (toFormat: IFormatParams) => {
