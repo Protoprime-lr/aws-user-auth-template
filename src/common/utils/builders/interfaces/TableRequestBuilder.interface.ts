@@ -25,6 +25,6 @@ export interface IQueryParams {
   IndexName?: string;
   KeyConditionExpression: string;
   ExpressionAttributeValues: any;
-  ExpressionAttributeNames: any;
+  ExpressionAttributeNames?: any;
   FilterExpression?: string;
 }

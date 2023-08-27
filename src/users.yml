@@ -1,5 +1,5 @@
 signUp:
-  handler: src/signUp/handler/signUp.handler
+  handler: src/handler/signUp.handler
   description: 'Register a new user'
   name: ${file(resources/index.json):signup-users}
   timeout: 25
@@ -8,62 +8,8 @@ signUp:
   iamRoleStatementsName: ${file(resources/index.json):signup-users}
   iamRoleStatements: ${file(resources/iamRoleStatements/signUp.yml)}
   provisionedConcurrency: ${self:custom.provisionedConcurrency.${self:provider.stage}, 0}
-  environment:
-    USERPOOL_USER_GROUP_DEFAULT: ${self:custom.cognito.groupName.default}
-    USERPOOL_USER_GROUP_MODERATORS: ${self:custom.cognito.groupName.moderators}
   events:
     - httpApi:
         path: /users/signup
-        method: post
-        cors: true
-
-signIn:
-  handler: src/signIn/handler/signIn.handler
-  description: 'Verify Sign In user'
-  name: ${file(resources/index.json):signin-users}
-  timeout: 25
-  logRetentionInDays: 14
-  iamRoleStatementsInherit: true
-  iamRoleStatementsName: ${file(resources/index.json):signin-users}
-  provisionedConcurrency: ${self:custom.provisionedConcurrency.${self:provider.stage}, 0}
-  events:
-    - httpApi:
-        path: /users/signin
-        method: post
-        cors: true
-
-profile:
-  handler: src/profile/handler/profile.handler
-  description: 'Get User Profile'
-  name: ${file(resources/index.json):profile-users}
-  timeout: 25
-  logRetentionInDays: 14
-  iamRoleStatementsInherit: true
-  iamRoleStatementsName: ${file(resources/index.json):profile-users}
-  iamRoleStatements: ${file(resources/iamRoleStatements/profile.yml)}
-  provisionedConcurrency: ${self:custom.provisionedConcurrency.${self:provider.stage}, 0}
-  events:
-    - httpApi:
-        path: /users/profile/{id}
-        method: get
-        cors: true
-
-verifyToken:
-  handler: src/verifyToken/handler/verifyToken.handler
-  description: 'Verify a tokens validation'
-  name: ${file(resources/index.json):verify-token}
-  timeout: 25
-  logRetentionInDays: 14
-  # iamRoleStatementsInherit: true
-  # iamRoleStatementsName: ${file(resources/index.json):verify-token}
-  # iamRoleStatements: ${file(resources/iamRoleStatements/signUp.yml)}
-  provisionedConcurrency: ${self:custom.provisionedConcurrency.${self:provider.stage}, 0}
-  environment:
-    USERPOOL_USER_GROUP_DEFAULT: ${self:custom.cognito.groupName.default}
-    USERPOOL_USER_GROUP_MODERATORS: ${self:custom.cognito.groupName.moderators}
-    USERPOOL_USER_GROUP_ADMINS: ${self:custom.cognito.groupName.admins}
-  events:
-    - httpApi:
-        path: /users/auth
         method: post
         cors: true

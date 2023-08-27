@@ -63,7 +63,7 @@ provider:
     OWNER_PROJECT_NAME: 'Protoprime'
     USERPOOL_ID: ${self:custom.userPoolId}
     USERPOOL_CLIENT_ID: !Ref UserClient
-    TABLE_NAME: ${file(resources/index.json):table_name}
+    TABLE_NAME: ${file(resources/index.json):users_table_name}
 
 package:
   individually: false
@@ -79,9 +79,6 @@ plugins:
   - serverless-webpack
 
 resources:
-  - ${file(resources/cognito/userPools.yml)}
-  - ${file(resources/cognito/userClients.yml)}
-  - ${file(resources/cognito/groups.yml)}
   - ${file(resources/tables/table.yml)}
 
 functions:
