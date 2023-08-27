@@ -1,23 +1,23 @@
 import { createTable, deleteTable } from '../../utils/aws/manageDynamoTables';
 import outputTestResponse from '../../utils/outputTestResponse';
 import regressionTest from '../../utils/regressionTest';
-import tableAttributes from '../../mocks/extra/tableAttributes.json';
-import { userRegistrationControllerInputMock200 } from '../../mocks/inputs/controller/userRegistrationControllerInputMock';
-import userRegistrationController from '../../../src/controller/userRegistration/index';
+import usersTableAttributes from '../../mocks/extra/usersTableAttributes.json';
+import { signUpControllerInputMock200 } from '../../mocks/inputs/controller/signUpControllerInputMock';
+import signUpController from '../../../src/controller/signUp/index';
 import {
-  userRegistrationControllerOutputMock200,
-  userRegistrationControllerOutputMock409,
-} from '../../mocks/outputs/controller/userRegistrationControllerOutputMock';
+  signUpControllerOutputMock200,
+  signUpControllerOutputMock409,
+} from '../../mocks/outputs/controller/signUpControllerOutputMock';
 import createUserAdapter from '../../../src/adapters/createUserAdapter';
 
 const tableName = process.env.TABLE_NAME;
-const testSuiteName = 'userRegistrationController';
+const testSuiteName = 'signUpController';
 
 describe(`Unit Test - Controller - ${testSuiteName}`, () => {
   beforeEach(async () => {
     await createTable({
       tableName,
-      ...tableAttributes,
+      ...usersTableAttributes,
     });
   });
 
@@ -27,9 +27,9 @@ describe(`Unit Test - Controller - ${testSuiteName}`, () => {
 
   it(`${testSuiteName} - 200`, async () => {
     const testName = `${testSuiteName}200`;
-    const inputMock = userRegistrationControllerInputMock200;
-    const outputMock = userRegistrationControllerOutputMock200;
-    const response = await userRegistrationController(inputMock);
+    const inputMock = signUpControllerInputMock200;
+    const outputMock = signUpControllerOutputMock200;
+    const response = await signUpController(inputMock);
 
     outputTestResponse({
       testName,
@@ -42,13 +42,13 @@ describe(`Unit Test - Controller - ${testSuiteName}`, () => {
   it(`${testSuiteName} - 409`, async () => {
     const testName = `${testSuiteName}409`;
     await createUserAdapter({
-      payload: userRegistrationControllerInputMock200.body,
+      payload: signUpControllerInputMock200.body,
     });
 
-    const inputMock = userRegistrationControllerInputMock200;
-    const outputMock = userRegistrationControllerOutputMock409;
+    const inputMock = signUpControllerInputMock200;
+    const outputMock = signUpControllerOutputMock409;
 
-    const response = await userRegistrationController(inputMock);
+    const response = await signUpController(inputMock);
 
     outputTestResponse({
       testName,

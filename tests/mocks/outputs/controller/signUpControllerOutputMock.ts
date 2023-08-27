@@ -1,4 +1,4 @@
-export const userRegistrationControllerOutputMock409 = {
+export const signUpControllerOutputMock409 = {
   status: 409,
   body: {
     message: 'That email is already in use',
@@ -6,7 +6,7 @@ export const userRegistrationControllerOutputMock409 = {
   },
 };
 
-export const userRegistrationControllerOutputMock200 = {
+export const signUpControllerOutputMock200 = {
   pk: 'USER#test@gmail.com',
   sk: 'USER#data',
   email: 'test@gmail.com',

@@ -1,5 +1,5 @@
 signUp:
-  handler: src/signUp/handler/signUp.handler
+  handler: src/handler/signUp.handler
   description: 'Register a new user'
   name: ${file(resources/index.json):signup-users}
   timeout: 25

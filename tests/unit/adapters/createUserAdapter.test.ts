@@ -1,6 +1,6 @@
 import outputTestResponse from '../../utils/outputTestResponse';
 import regressionTest from '../../utils/regressionTest';
-import tableAttributes from '../../mocks/extra/tableAttributes.json';
+import usersTableAttributes from '../../mocks/extra/usersTableAttributes.json';
 import { createTable, deleteTable } from '../../utils/aws/manageDynamoTables';
 import { createUserAdapterInputMock200 } from '../../mocks/inputs/adapters/createUserAdapterInputMock';
 import createUserAdapter from '../../../src/adapters/createUserAdapter/index';
@@ -13,7 +13,7 @@ describe(`Unit Test - Adapter - ${testSuiteName}`, () => {
   beforeEach(async () => {
     await createTable({
       tableName,
-      ...tableAttributes,
+      ...usersTableAttributes,
     });
   });
 

@@ -10,15 +10,14 @@ import {
   IQueryParams,
   ITableBuilder,
 } from './interfaces/TableRequestBuilder.interface';
-import { IUserById, IUserTableItem } from '../../interfaces/IUser';
 
 export default class TableRequestBuilder implements ITableBuilder {
   tableName?: string;
 
   params: any;
 
-  constructor() {
-    this.tableName = process.env.TABLE_NAME;
+  constructor(tableName?: string) {
+    this.tableName = tableName ?? process.env.TABLE_NAME;
   }
 
   queryItems = async (params: IQueryParams): Promise<any> => {
@@ -31,12 +30,12 @@ export default class TableRequestBuilder implements ITableBuilder {
     return dynamo.queryTable(finalParams);
   };
 
-  getItem = async (payload: IUserById): Promise<IUserTableItem> => {
+  getItem = async (payload: any): Promise<any> => {
     this.formatDynamoParams({ input: { payload }, operation: OPERATIONS.GET });
     return dynamo.getItem(this.params);
   };
 
-  createItem = async (payload: IUserTableItem, condition?: string) => {
+  createItem = async (payload: any, condition?: string) => {
     this.formatDynamoParams({
       input: { payload, condition },
       operation: OPERATIONS.PUT,
@@ -115,9 +114,5 @@ export default class TableRequestBuilder implements ITableBuilder {
     const operationStrategy = operations[operation];
 
     this.params = operationStrategy(input);
-    console.log(
-      'MARTIN_LOG=> formatDynamoParams this.params',
-      JSON.stringify(this.params)
-    );
   };
 }

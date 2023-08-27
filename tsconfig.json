@@ -17,8 +17,8 @@
     "noUnusedLocals": false,
     "noImplicitReturns": true,
     "noImplicitAny": false,
-    "useUnknownInCatchVariables": false,
+    "useUnknownInCatchVariables": false
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules",".serverless/**/*",]
+  "exclude": ["node_modules", ".serverless/**/*"]
 }

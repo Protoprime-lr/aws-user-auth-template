@@ -1,6 +1,6 @@
 import outputTestResponse from '../../utils/outputTestResponse';
 import regressionTest from '../../utils/regressionTest';
-import tableAttributes from '../../mocks/extra/tableAttributes.json';
+import usersTableAttributes from '../../mocks/extra/usersTableAttributes.json';
 import { createTable, deleteTable } from '../../utils/aws/manageDynamoTables';
 import createUserDomain from '../../../src/domain/createUserDomain/index';
 import { createUserDomainInputMock200 } from '../../mocks/inputs/domain/createUserDomainInputMock';
@@ -13,7 +13,7 @@ describe(`Unit Test - Domain - ${testSuiteName}`, () => {
   beforeEach(async () => {
     await createTable({
       tableName,
-      ...tableAttributes,
+      ...usersTableAttributes,
     });
   });
 

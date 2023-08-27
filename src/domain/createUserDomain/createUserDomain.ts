@@ -1,3 +1,4 @@
+import { iUserPersonalData } from '../../common/interfaces/IUser';
 import {
   iCreateUserDomainDeps,
   iCreateUserDomainInput,
@@ -5,7 +6,7 @@ import {
 
 const createUserDomainInstance =
   (dependencies: iCreateUserDomainDeps) =>
-  async (input: iCreateUserDomainInput) => {
+  async (input: iCreateUserDomainInput): Promise<iUserPersonalData> => {
     const {
       createUserAdapter,
       getUserByKeyAdapter,

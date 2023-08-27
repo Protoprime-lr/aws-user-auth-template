@@ -20,6 +20,9 @@ const createUserAdapterInstance =
     try {
       const userItem = new UserEntity(input.payload);
       const infraResponse = await createUserInfra(userItem.get());
+
+      delete infraResponse.password;
+
       return infraResponse;
     } catch (error) {
       throw ErrorHandler({

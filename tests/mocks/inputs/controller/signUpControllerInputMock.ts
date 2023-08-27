@@ -1,5 +1,5 @@
 import signupPayload from '../common/signupPayload';
 
-export const userRegistrationControllerInputMock200 = {
+export const signUpControllerInputMock200 = {
   body: signupPayload,
 };

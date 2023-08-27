@@ -9,30 +9,19 @@ const sendVerifyEmailDomainInstance =
     const {
       ErrorHandler,
       sendEmailAdapter,
-      eMessageType,
-      verifyEmailMessage,
-      verifyEmailTitle,
+      userVerificationAdapter,
       DefaultErrorName,
       ErrorCodes,
       ErrorLayer,
       statusCodes,
     } = dependencies;
     try {
-      const [messageType, messageContent] = verifyEmailMessage.split('#');
-
-      if (!Object.keys(eMessageType).includes(messageType)) {
-        throw {
-          message: 'Invalid Message Type',
-          status: statusCodes.NOT_ACCEPTABLE,
-        };
-      }
+      const userVerification = await userVerificationAdapter(input);
 
       const response = await sendEmailAdapter({
         destination: input.email,
-        title: verifyEmailTitle,
-        message: {
-          [messageType]: messageContent.trim(),
-        },
+        title: userVerification.verification_message_title,
+        message: userVerification.verification_message,
       });
 
       return response;

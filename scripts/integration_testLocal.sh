@@ -14,7 +14,7 @@ cp node_modules/rebased/schema/downstreamCommand.js node_modules/rebased/schema/
 cp ./tests/utils/misc/downstreamCommand.js node_modules/rebased/schema/
 
 JEST_EXIT_CODE=0
-jest TZ=utc NODE_ENV=test LOG_LEVEL=DEBUG jest ./tests/unit/**/send*.test.ts --setupFiles dotenv/config --runInBand --verbose || JEST_EXIT_CODE=$?
+jest TZ=utc NODE_ENV=test LOG_LEVEL=DEBUG jest ./tests/unit/**/createUserDomain*.test.ts --setupFiles dotenv/config --runInBand --verbose || JEST_EXIT_CODE=$?
 
 cp node_modules/rebased/service/storage/dynamo.js.copy node_modules/rebased/service/storage/dynamo.js
 cp node_modules/rebased/service/downstream/ses.js.copy node_modules/rebased/service/downstream/ses.js

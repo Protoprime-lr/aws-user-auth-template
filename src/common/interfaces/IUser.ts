@@ -2,12 +2,8 @@ import roles from '../enums/roles.enum';
 import EActiveStatus from '../enums/status.enum';
 import { eTableTypes } from '../enums/tableTypes';
 
-export interface iUserLoginInput {
+export interface iUserPersonalData {
   email: string;
-  password: string;
-}
-
-export interface IUserItem extends iUserLoginInput {
   first_name?: string;
   last_name?: string;
   document_id?: string;
@@ -25,8 +21,13 @@ export interface IUserItem extends iUserLoginInput {
     };
   };
 }
+export interface iUserLoginInput {
+  password: string;
+}
 
-export interface IUserTableItem extends IUserItem {
+export type iUserItem = iUserLoginInput & iUserPersonalData;
+
+export interface IUserTableItem extends iUserItem {
   status?: EActiveStatus;
   creation_date?: number;
   verified?: boolean;

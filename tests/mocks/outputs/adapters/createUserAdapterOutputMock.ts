@@ -1,7 +1,6 @@
 export const createUserAdapterOutputMock200 = {
   pk: 'USER#test@gmail.com',
   sk: 'USER#data',
-  password: 'pepe12341',
   email: 'test@gmail.com',
   status: 'ACTIVE',
   role: 'default',

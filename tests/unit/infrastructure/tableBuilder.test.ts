@@ -1,7 +1,7 @@
 import { createItemTableInfra } from '../../../src/infrastructure/tableInfra/index';
 import outputTestResponse from '../../utils/outputTestResponse';
 import regressionTest from '../../utils/regressionTest';
-import tableAttributes from '../../mocks/extra/tableAttributes.json';
+import usersTableAttributes from '../../mocks/extra/usersTableAttributes.json';
 import { createTable, deleteTable } from '../../utils/aws/manageDynamoTables';
 import { createUserInfraInputMock200 } from '../../mocks/inputs/infrastructure/createUserInfraInputMock';
 import { createUserInfraOutputMock200 } from '../../mocks/outputs/infrastructure/createUserInfraOutputMock';
@@ -12,7 +12,7 @@ describe('Unit Test - Infrastructure - TableRepository', () => {
   beforeEach(async () => {
     await createTable({
       tableName,
-      ...tableAttributes,
+      ...usersTableAttributes,
     });
   });
 

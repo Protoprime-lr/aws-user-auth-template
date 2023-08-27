@@ -1,6 +1,6 @@
-import { IUserItem } from '../../../../src/common/interfaces/IUser';
+import { iUserItem } from '../../../../src/common/interfaces/IUser';
 
-const signupPayload: IUserItem = {
+const signupPayload: iUserItem = {
   email: 'test@gmail.com',
   password: 'pepe12341',
   // name: 'test',

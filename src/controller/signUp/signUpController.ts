@@ -1,14 +1,15 @@
 import ResponseEntity from '../../entities/Response';
 import {
-  iUserRegistrationControllerDeps,
-  iUserRegistrationControllerInput,
-} from './interface/iUserRegistrationController';
+  iSignUpControllerDeps,
+  iSignUpControllerInput,
+} from './interface/iSignUpController';
 
-const userRegistrationControllerInstance =
-  (dependencies: iUserRegistrationControllerDeps) =>
-  async (input: iUserRegistrationControllerInput) => {
+const signUpControllerInstance =
+  (dependencies: iSignUpControllerDeps) =>
+  async (input: iSignUpControllerInput) => {
     const {
       createUserDomain,
+      sendVerifyEmailDomain,
       ErrorHandler,
       ErrorCodes,
       DefaultErrorName,
@@ -22,12 +23,15 @@ const userRegistrationControllerInstance =
       const { body: inputPayload } = input;
 
       const newUser = await createUserDomain({ payload: inputPayload });
+      await sendVerifyEmailDomain({
+        email: newUser.email,
+      });
 
       return newUser;
     } catch (error) {
       const customError = ErrorHandler({
         message: error.message?.message ?? error.message,
-        code: ErrorCodes.GET_USER_BY_KEY_FAILED,
+        code: ErrorCodes.SIGN_UP_FAILED,
         layer: ErrorLayer,
         status: error.status ?? statusCodes.INTERNAL_SERVER_ERROR,
         name: error.name ?? DefaultErrorName,
@@ -40,4 +44,4 @@ const userRegistrationControllerInstance =
     }
   };
 
-export default userRegistrationControllerInstance;
+export default signUpControllerInstance;

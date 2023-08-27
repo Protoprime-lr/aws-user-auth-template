@@ -1,11 +1,11 @@
 import createUserAdapter from '../../../adapters/createUserAdapter';
 import getUserByKeyAdapter from '../../../adapters/getUserByKeyAdapter';
-import { IUserItem } from '../../../common/interfaces/IUser';
+import { iUserItem } from '../../../common/interfaces/IUser';
 import { iCommonDependencies } from '../../../common/interfaces/iCommonDeps';
 import encryptPassword from '../helpers/encryptPassword';
 
 export interface iCreateUserDomainInput {
-  payload: IUserItem;
+  payload: iUserItem;
 }
 export interface iCreateUserDomainDeps extends iCommonDependencies {
   createUserAdapter: typeof createUserAdapter;

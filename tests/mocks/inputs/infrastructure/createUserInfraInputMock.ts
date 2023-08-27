@@ -5,5 +5,6 @@ export const createUserInfraInputMock200 = {
   sk: 'USER#data',
   type: 'USER',
   role: 'default',
+  verified: false,
   ...signupPayload,
 };
