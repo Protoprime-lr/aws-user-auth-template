@@ -19,7 +19,11 @@ const userVerificationAdapterInstance =
     try {
       const UserVerificationInstance = new UserVerification(input);
 
-      await createItemTableInfra(UserVerificationInstance.get());
+      await createItemTableInfra({
+        schema: UserVerification.getDynamooseModel(),
+        input: UserVerificationInstance.get(),
+        tableName: process.env.USERS_CACHE_NAME,
+      });
 
       return UserVerificationInstance.get();
     } catch (error) {

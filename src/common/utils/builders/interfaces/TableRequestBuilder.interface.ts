@@ -22,9 +22,33 @@ export interface IGetItem {
 }
 
 export interface IQueryParams {
-  IndexName?: string;
-  KeyConditionExpression: string;
-  ExpressionAttributeValues: any;
-  ExpressionAttributeNames?: any;
-  FilterExpression?: string;
+  schema: any;
+  tableName: any;
+  params: {
+    query: {
+      [key: string]: {
+        and?: any;
+        or?: any;
+        not?: any;
+        parenthesis?: any;
+        group?: any;
+        filter?: any;
+        where?: any;
+        attribute?: any;
+        eq?: any;
+        exists?: any;
+        lt?: any;
+        le?: any;
+        gt?: any;
+        ge?: any;
+        beginsWith?: any;
+        contains?: any;
+        in?: any;
+        between?: any;
+      };
+    };
+    options?: {
+      using_index?: string;
+    };
+  };
 }

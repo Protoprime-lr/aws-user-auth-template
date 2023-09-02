@@ -16,8 +16,8 @@ export default class TableRequestBuilder implements ITableBuilder {
 
   params: any;
 
-  constructor(tableName?: string) {
-    this.tableName = tableName ?? process.env.TABLE_NAME;
+  constructor(tableName: string) {
+    this.tableName = tableName;
   }
 
   queryItems = async (params: IQueryParams): Promise<any> => {

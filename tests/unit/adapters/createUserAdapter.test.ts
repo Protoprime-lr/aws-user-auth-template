@@ -6,7 +6,7 @@ import { createUserAdapterInputMock200 } from '../../mocks/inputs/adapters/creat
 import createUserAdapter from '../../../src/adapters/createUserAdapter/index';
 import { createUserAdapterOutputMock200 } from '../../mocks/outputs/adapters/createUserAdapterOutputMock';
 
-const tableName = process.env.TABLE_NAME;
+const tableName = process.env.USERS_TABLE;
 const testSuiteName = 'createUserAdapter';
 
 describe(`Unit Test - Adapter - ${testSuiteName}`, () => {

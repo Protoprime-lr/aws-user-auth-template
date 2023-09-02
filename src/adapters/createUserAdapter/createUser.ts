@@ -19,9 +19,13 @@ const createUserAdapterInstance =
 
     try {
       const userItem = new UserEntity(input.payload);
-      const infraResponse = await createUserInfra(userItem.get());
+      const infraResponse = await createUserInfra({
+        schema: UserEntity.getDynamooseModel(),
+        input: userItem.get(),
+        tableName: process.env.USERS_TABLE,
+      });
 
-      delete infraResponse.password;
+      // delete infraResponse.password;
 
       return infraResponse;
     } catch (error) {

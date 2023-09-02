@@ -7,7 +7,7 @@ import { sendVerifyEmailDomainInputMock200 } from '../../mocks/inputs/domain/sen
 import { sendVerifyEmailDomainOutputMock200 } from '../../mocks/outputs/domain/sendVerifyEmailDomainOutputMock';
 import { createTable, deleteTable } from '../../utils/aws/manageDynamoTables';
 
-const tableName = process.env.TABLE_NAME;
+const tableName = process.env.USERS_TABLE;
 const testSuiteName = 'sendVerifyEmailDomain';
 
 describe(`Unit Test - Domain - ${testSuiteName}`, () => {

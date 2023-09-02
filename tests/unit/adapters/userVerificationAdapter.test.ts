@@ -6,7 +6,7 @@ import { userVerificationAdapterOutputMock200 } from '../../mocks/outputs/adapte
 import { createTable, deleteTable } from '../../utils/aws/manageDynamoTables';
 import usersTableAttributes from '../../mocks/extra/usersTableAttributes.json';
 
-const tableName = process.env.TABLE_NAME;
+const tableName = process.env.USERS_TABLE;
 
 const testSuiteName = 'userVerificationAdapter';
 
