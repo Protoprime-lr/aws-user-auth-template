@@ -4,7 +4,7 @@ import { IUserTableItem } from '../../common/interfaces/IUser';
 import iUserItemDeps from './interfaces/UserItemDeps';
 import { eTableTypes } from '../../common/enums/tableTypes';
 
-const UserItemObject = ({ dateLibrary }: iUserItemDeps) =>
+const UserItemObject = ({ dateLibrary, dynamooseSchema }: iUserItemDeps) =>
   class UserItem implements IUserTableItem {
     pk!: string;
 
@@ -59,6 +59,10 @@ const UserItemObject = ({ dateLibrary }: iUserItemDeps) =>
 
     get() {
       return this;
+    }
+
+    static getDynamooseModel() {
+      return dynamooseSchema;
     }
   };
 

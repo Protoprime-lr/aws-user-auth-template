@@ -14,13 +14,23 @@ const getUserByKeyAdapterInstance =
       ErrorLayer,
       statusCodes,
       TableTypes,
+      UserEntity,
     } = dependencies;
     try {
       const response = await queryItemTableInfra({
-        KeyConditionExpression: 'pk = :pk AND sk = :sk',
-        ExpressionAttributeValues: {
-          ':pk': `${TableTypes.USER}#${input.email}`,
-          ':sk': `${TableTypes.USER}#data`,
+        schema: UserEntity.getDynamooseModel(),
+        tableName: process.env.USERS_TABLE,
+        params: {
+          query: {
+            pk: {
+              eq: `${TableTypes.USER}#${input.email}`,
+              and: {
+                sk: {
+                  eq: `${TableTypes.USER}#data`,
+                },
+              },
+            },
+          },
         },
       });
 

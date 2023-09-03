@@ -6,7 +6,7 @@ import createUserDomain from '../../../src/domain/createUserDomain/index';
 import { createUserDomainInputMock200 } from '../../mocks/inputs/domain/createUserDomainInputMock';
 import { createUserDomainOutputMock200 } from '../../mocks/outputs/domain/createUserDomainOutputMock';
 
-const tableName = process.env.TABLE_NAME;
+const tableName = process.env.USERS_TABLE;
 const testSuiteName = 'createUserDomain';
 
 describe(`Unit Test - Domain - ${testSuiteName}`, () => {

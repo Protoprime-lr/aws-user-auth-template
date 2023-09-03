@@ -14,10 +14,6 @@
     {
       "AttributeName": "type",
       "AttributeType": "S"
-    },
-    {
-      "AttributeName": "role",
-      "AttributeType": "S"
     }
   ],
   "globalSecondaryIndexes": [
@@ -27,10 +23,6 @@
         {
           "AttributeName": "type",
           "KeyType": "HASH"
-        },
-        {
-          "AttributeName": "role",
-          "KeyType": "RANGE"
         }
       ],
       "Projection": {

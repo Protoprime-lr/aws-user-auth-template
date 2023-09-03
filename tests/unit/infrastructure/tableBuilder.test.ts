@@ -6,7 +6,7 @@ import { createTable, deleteTable } from '../../utils/aws/manageDynamoTables';
 import { createUserInfraInputMock200 } from '../../mocks/inputs/infrastructure/createUserInfraInputMock';
 import { createUserInfraOutputMock200 } from '../../mocks/outputs/infrastructure/createUserInfraOutputMock';
 
-const tableName = process.env.TABLE_NAME;
+const tableName = process.env.USERS_TABLE;
 
 describe('Unit Test - Infrastructure - TableRepository', () => {
   beforeEach(async () => {
@@ -24,6 +24,8 @@ describe('Unit Test - Infrastructure - TableRepository', () => {
     const testName = 'createItemTableInfra200';
     const inputMock = createUserInfraInputMock200;
     const outputMock = createUserInfraOutputMock200;
+    inputMock.tableName = tableName ?? inputMock.tableName;
+
     const response = await createItemTableInfra(inputMock);
 
     outputTestResponse({
@@ -33,19 +35,6 @@ describe('Unit Test - Infrastructure - TableRepository', () => {
 
     regressionTest(outputMock, response, testName);
   });
-
-  //   it('addToTableInfra - Failed', async () => {
-  //     const data: any = { ...itemMock };
-  //     delete data.pk;
-
-  //     await addToTableInfra(data).catch((error) => {
-  //       outputTestResponse({ testName: 'addToTableInfra500', payload: error });
-
-  //       expect(JSON.stringify(error)).toStrictEqual(JSON.stringify(addItem500));
-
-  //       regressionTest(addItem500, error, 'addToTableInfra500');
-  //     });
-  //   });
 
   //   it('queryTable SIMPLE QUERY - 200', async () => {
   //     const testName = 'queryTableInfra200';

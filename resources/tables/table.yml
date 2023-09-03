@@ -10,8 +10,6 @@ Resources:
           AttributeType: S
         - AttributeName: type
           AttributeType: S
-        - AttributeName: role
-          AttributeType: S
       KeySchema:
         - AttributeName: pk
           KeyType: HASH
@@ -22,8 +20,6 @@ Resources:
           KeySchema:
             - AttributeName: type
               KeyType: HASH
-            - AttributeName: role
-              KeyType: RANGE
           Projection:
             ProjectionType: ALL
       BillingMode: PAY_PER_REQUEST
@@ -36,11 +32,20 @@ Resources:
           AttributeType: S
         - AttributeName: sk
           AttributeType: S
+        - AttributeName: id
+          AttributeType: S
       KeySchema:
         - AttributeName: pk
           KeyType: HASH
         - AttributeName: sk
           KeyType: RANGE
+      GlobalSecondaryIndexes:
+        - IndexName: GSI_ID
+          KeySchema:
+            - AttributeName: id
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
       TimeToLiveSpecification:
         AttributeName: expiration_date
         Enabled: true

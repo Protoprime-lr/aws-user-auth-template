@@ -6,18 +6,22 @@ import {
 const userVerificationInstance = (dependencies: iUserVerificationDeps) => {
   const {
     dateLibrary,
+    uuid,
     eTableTypes,
     eMessageType,
     userVerificationMessageTemplate,
     userVerificationTitleTemplate,
     getRandomVerificationCode,
     verifyDuration,
+    dynamooseSchema,
   } = dependencies;
 
   class UserVerification {
     pk!: string;
 
     sk!: string;
+
+    id!: string;
 
     expiration_date!: number;
 
@@ -39,17 +43,32 @@ const userVerificationInstance = (dependencies: iUserVerificationDeps) => {
       const verificationCode = getRandomVerificationCode();
       this.pk = `${eTableTypes.USER}#${this.email}`;
       this.sk = `${eTableTypes.VERIFICATION_CODE}#${verificationCode}`;
+      this.id = uuid();
+      this.verification_code = verificationCode;
       this.expiration_date = dateLibrary().unix() + parseInt(verifyDuration);
+      this.verification_message_title = userVerificationTitleTemplate;
+      this.buildVerificationMessage();
+    }
+
+    buildVerificationMessage() {
+      userVerificationMessageTemplate
+        .replace(
+          '[verificationUrl]',
+          `www.fakedomain.com/users/verification/${this.id}`
+        )
+        .replace('[userEmail]', this.email);
 
       this.verification_message = {
         [eMessageType.html]: userVerificationMessageTemplate,
       };
-
-      this.verification_message_title = userVerificationTitleTemplate;
     }
 
     get() {
       return this;
+    }
+
+    static getDynamooseModel() {
+      return dynamooseSchema;
     }
   }
 

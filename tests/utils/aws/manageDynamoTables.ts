@@ -2,7 +2,7 @@
 const AWS = require('aws-sdk');
 const AWSXRay = require('aws-xray-sdk');
 
-const endpoint = new AWS.Endpoint('http://localhost:4566');
+const endpoint = new AWS.Endpoint(process.env.LOCALHOST);
 AWS.config.update({
   region: 'us-east-1',
   accessKeyId: 'fake-access-key',

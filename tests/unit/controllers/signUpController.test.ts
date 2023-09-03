@@ -10,7 +10,7 @@ import {
 } from '../../mocks/outputs/controller/signUpControllerOutputMock';
 import createUserAdapter from '../../../src/adapters/createUserAdapter';
 
-const tableName = process.env.TABLE_NAME;
+const tableName = process.env.USERS_TABLE;
 const testSuiteName = 'signUpController';
 
 describe(`Unit Test - Controller - ${testSuiteName}`, () => {
