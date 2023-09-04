@@ -1,12 +1,12 @@
 import domainCommonDeps from '../common/domainCommonDeps';
 import sendEmailAdapter from '../../adapters/sendEmailAdapter/index';
 import sendVerifyEmailDomainInstance from './sendVerifyEmailDomain';
-import userVerificationAdapter from '../../adapters/userVerificationAdapter/index';
+import createUserVerificationAdapter from '../../adapters/userVerificationAdapters/createUserVerificationAdapter';
 
 const sendVerifyEmailDomain = sendVerifyEmailDomainInstance({
   ...domainCommonDeps,
   sendEmailAdapter,
-  userVerificationAdapter,
+  userVerificationAdapter: createUserVerificationAdapter,
 });
 
 export default sendVerifyEmailDomain;

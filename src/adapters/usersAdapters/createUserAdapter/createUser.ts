@@ -14,6 +14,7 @@ const createUserAdapterInstance =
       ErrorLayer,
       statusCodes,
       UserEntity,
+      UsersTableName,
     } = dependencies;
     console.log('MARTIN_LOG=> createUserAdapter input', JSON.stringify(input));
 
@@ -21,8 +22,8 @@ const createUserAdapterInstance =
       const userItem = new UserEntity(input.payload);
       const infraResponse = await createUserInfra({
         schema: UserEntity.getDynamooseModel(),
-        input: userItem.get(),
-        tableName: process.env.USERS_TABLE,
+        payload: userItem.get(),
+        tableName: UsersTableName,
       });
 
       // delete infraResponse.password;

@@ -3,7 +3,7 @@ import signupPayload from '../common/signupPayload';
 
 export const createUserInfraInputMock200 = {
   schema: UserEntity.getDynamooseModel(),
-  input: {
+  payload: {
     pk: `USER#${signupPayload.email}`,
     sk: 'USER#data',
     type: 'USER',

@@ -15,6 +15,7 @@ export interface iUserVerificationDeps {
   verifyDuration: string;
   dynamooseSchema: typeof UsersCacheDynamooseSchema;
   uuid: typeof uuid;
+  userVerificationUrl: string;
 }
 
 export interface iUserVerificationInput {

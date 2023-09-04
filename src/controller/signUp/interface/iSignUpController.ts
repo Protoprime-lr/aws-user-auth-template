@@ -1,5 +1,5 @@
 import { iCommonDependencies } from '../../../common/interfaces/iCommonDeps';
-import getUserByKeyAdapter from '../../../adapters/getUserByKeyAdapter/index';
+import getUserByKeyAdapter from '../../../adapters/usersAdapters/getUserByKeyAdapter/index';
 import iControllerCommonInput from '../../../common/interfaces/ICommandOutput';
 import ResponseEntity from '../../../entities/Response/index';
 import createUserDomain from '../../../domain/createUserDomain/index';

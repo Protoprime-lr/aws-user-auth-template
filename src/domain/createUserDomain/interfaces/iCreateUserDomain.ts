@@ -1,5 +1,5 @@
-import createUserAdapter from '../../../adapters/createUserAdapter';
-import getUserByKeyAdapter from '../../../adapters/getUserByKeyAdapter';
+import createUserAdapter from '../../../adapters/usersAdapters/createUserAdapter';
+import getUserByKeyAdapter from '../../../adapters/usersAdapters/getUserByKeyAdapter';
 import { iUserItem } from '../../../common/interfaces/IUser';
 import { iCommonDependencies } from '../../../common/interfaces/iCommonDeps';
 import encryptPassword from '../helpers/encryptPassword';

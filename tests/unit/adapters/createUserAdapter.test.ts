@@ -3,7 +3,7 @@ import regressionTest from '../../utils/regressionTest';
 import usersTableAttributes from '../../mocks/extra/usersTableAttributes.json';
 import { createTable, deleteTable } from '../../utils/aws/manageDynamoTables';
 import { createUserAdapterInputMock200 } from '../../mocks/inputs/adapters/createUserAdapterInputMock';
-import createUserAdapter from '../../../src/adapters/createUserAdapter/index';
+import createUserAdapter from '../../../src/adapters/usersAdapters/createUserAdapter/index';
 import { createUserAdapterOutputMock200 } from '../../mocks/outputs/adapters/createUserAdapterOutputMock';
 
 const tableName = process.env.USERS_TABLE;

@@ -14,6 +14,7 @@ const userVerificationInstance = (dependencies: iUserVerificationDeps) => {
     getRandomVerificationCode,
     verifyDuration,
     dynamooseSchema,
+    userVerificationUrl,
   } = dependencies;
 
   class UserVerification {
@@ -51,16 +52,17 @@ const userVerificationInstance = (dependencies: iUserVerificationDeps) => {
     }
 
     buildVerificationMessage() {
-      userVerificationMessageTemplate
-        .replace(
-          '[verificationUrl]',
-          `www.fakedomain.com/users/verification/${this.id}`
-        )
-        .replace('[userEmail]', this.email);
-
       this.verification_message = {
-        [eMessageType.html]: userVerificationMessageTemplate,
+        [eMessageType.html]: userVerificationMessageTemplate
+          .replace(/\[verificationUrl\]/g, this.buildVerificationUrl())
+          .replace(/\[userEmail\]/, this.email),
       };
+    }
+
+    buildVerificationUrl() {
+      return userVerificationUrl
+        .replace(':id', this.id)
+        .replace(':code', this.verification_code);
     }
 
     get() {

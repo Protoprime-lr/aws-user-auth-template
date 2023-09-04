@@ -15,11 +15,12 @@ const getUserByKeyAdapterInstance =
       statusCodes,
       TableTypes,
       UserEntity,
+      UsersTableName,
     } = dependencies;
     try {
       const response = await queryItemTableInfra({
         schema: UserEntity.getDynamooseModel(),
-        tableName: process.env.USERS_TABLE,
+        tableName: UsersTableName,
         params: {
           query: {
             pk: {

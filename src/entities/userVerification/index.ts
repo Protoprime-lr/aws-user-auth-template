@@ -20,6 +20,7 @@ const UserVerification = userVerificationInstance({
   eMessageType,
   verifyDuration: process.env.VERIFY_DURATION ?? '600',
   dynamooseSchema: UsersCacheDynamooseSchema,
+  userVerificationUrl: process.env.USERS_VERIFICATION_URL ?? '',
 });
 
 export default UserVerification;

@@ -8,10 +8,12 @@ import {
   signUpControllerOutputMock200,
   signUpControllerOutputMock409,
 } from '../../mocks/outputs/controller/signUpControllerOutputMock';
-import createUserAdapter from '../../../src/adapters/createUserAdapter';
+import createUserAdapter from '../../../src/adapters/usersAdapters/createUserAdapter';
+import { verifyEmail } from '../../utils/aws/manageSesData';
 
 const tableName = process.env.USERS_TABLE;
 const testSuiteName = 'signUpController';
+const fakeEmail = process.env.FAKE_EMAIL ?? '';
 
 describe(`Unit Test - Controller - ${testSuiteName}`, () => {
   beforeEach(async () => {
@@ -29,6 +31,7 @@ describe(`Unit Test - Controller - ${testSuiteName}`, () => {
     const testName = `${testSuiteName}200`;
     const inputMock = signUpControllerInputMock200;
     const outputMock = signUpControllerOutputMock200;
+    await verifyEmail(fakeEmail);
     const response = await signUpController(inputMock);
 
     outputTestResponse({

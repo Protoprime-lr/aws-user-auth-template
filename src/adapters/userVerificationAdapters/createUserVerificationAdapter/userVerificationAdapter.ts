@@ -1,11 +1,11 @@
 import {
-  iUserVerificationAdapterDeps,
-  iUserVerificationAdapterInput,
+  iCreateUserVerificationAdapterDeps,
+  iCreateUserVerificationAdapterInput,
 } from './interfaces/iUserVerificationAdapter';
 
-const userVerificationAdapterInstance =
-  (dependencies: iUserVerificationAdapterDeps) =>
-  async (input: iUserVerificationAdapterInput) => {
+const createUserVerificationAdapterInstance =
+  (dependencies: iCreateUserVerificationAdapterDeps) =>
+  async (input: iCreateUserVerificationAdapterInput) => {
     const {
       DefaultErrorName,
       ErrorCodes,
@@ -14,6 +14,7 @@ const userVerificationAdapterInstance =
       createItemTableInfra,
       UserVerification,
       statusCodes,
+      UsersCacheTableName,
     } = dependencies;
 
     try {
@@ -21,15 +22,15 @@ const userVerificationAdapterInstance =
 
       await createItemTableInfra({
         schema: UserVerification.getDynamooseModel(),
-        input: UserVerificationInstance.get(),
-        tableName: process.env.USERS_CACHE_NAME,
+        payload: UserVerificationInstance.get(),
+        tableName: UsersCacheTableName,
       });
 
       return UserVerificationInstance.get();
     } catch (error) {
       throw ErrorHandler({
         message: error.message?.message ?? error.message,
-        code: ErrorCodes.STORE_VERIFICATION_FAILED,
+        code: ErrorCodes.CREATE_USER_VERIFICATION_FAILED,
         layer: ErrorLayer,
         status: error.status ?? statusCodes.INTERNAL_SERVER_ERROR,
         name: error.name ?? DefaultErrorName,
@@ -38,4 +39,4 @@ const userVerificationAdapterInstance =
     }
   };
 
-export default userVerificationAdapterInstance;
+export default createUserVerificationAdapterInstance;

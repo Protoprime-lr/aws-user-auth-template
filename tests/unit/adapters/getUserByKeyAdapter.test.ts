@@ -2,8 +2,8 @@ import outputTestResponse from '../../utils/outputTestResponse';
 import regressionTest from '../../utils/regressionTest';
 import usersTableAttributes from '../../mocks/extra/usersTableAttributes.json';
 import { createTable, deleteTable } from '../../utils/aws/manageDynamoTables';
-import getUserByKeyAdapter from '../../../src/adapters/getUserByKeyAdapter/index';
-import createUserAdapter from '../../../src/adapters/createUserAdapter';
+import getUserByKeyAdapter from '../../../src/adapters/usersAdapters/getUserByKeyAdapter/index';
+import createUserAdapter from '../../../src/adapters/usersAdapters/createUserAdapter';
 import { createUserAdapterInputMock200 } from '../../mocks/inputs/adapters/createUserAdapterInputMock';
 import {
   getUserByKeyAdapterInputMock200,
