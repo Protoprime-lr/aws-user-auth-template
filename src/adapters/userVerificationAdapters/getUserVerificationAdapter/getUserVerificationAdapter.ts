@@ -1,3 +1,4 @@
+import { iUserVerificationItem } from '../../../entities/userVerification/interfaces/iUserVerification';
 import {
   iGetUserVerificationAdapterDeps,
   iGetUserVerificationAdapterInput,
@@ -5,7 +6,9 @@ import {
 
 const getUserVerificationAdapterInstance =
   (dependencies: iGetUserVerificationAdapterDeps) =>
-  async (input: iGetUserVerificationAdapterInput) => {
+  async (
+    input: iGetUserVerificationAdapterInput
+  ): Promise<iUserVerificationItem> => {
     const {
       DefaultErrorName,
       ErrorCodes,

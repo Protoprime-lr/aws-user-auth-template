@@ -3,7 +3,7 @@ import {
   iUpdateUserVerificationAdapterInput,
 } from './interface/iUpdateUserVerificationAdapter';
 
-const deleteUserVerificationAdapterInstance =
+const updateUserVerificationAdapterInstance =
   (dependencies: iUpdateUserVerificationAdapterDeps) =>
   async (input: iUpdateUserVerificationAdapterInput) => {
     const {
@@ -37,4 +37,4 @@ const deleteUserVerificationAdapterInstance =
     }
   };
 
-export default deleteUserVerificationAdapterInstance;
+export default updateUserVerificationAdapterInstance;

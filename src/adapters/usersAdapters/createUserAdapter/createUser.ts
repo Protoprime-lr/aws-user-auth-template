@@ -1,3 +1,4 @@
+import { iUserTableItem } from '../../../common/interfaces/IUser';
 import {
   iCreateUserAdapterDeps,
   iCreateUserAdapterInput,
@@ -5,7 +6,7 @@ import {
 
 const createUserAdapterInstance =
   (dependencies: iCreateUserAdapterDeps) =>
-  async (input: iCreateUserAdapterInput): Promise<any> => {
+  async (input: iCreateUserAdapterInput): Promise<iUserTableItem> => {
     const {
       createUserInfra,
       DefaultErrorName,
@@ -20,15 +21,13 @@ const createUserAdapterInstance =
 
     try {
       const userItem = new UserEntity(input.payload);
-      const infraResponse = await createUserInfra({
+      await createUserInfra({
         schema: UserEntity.getDynamooseModel(),
         payload: userItem.get(),
         tableName: UsersTableName,
       });
 
-      // delete infraResponse.password;
-
-      return infraResponse;
+      return userItem.get();
     } catch (error) {
       throw ErrorHandler({
         message: error.message?.message ?? error.message,

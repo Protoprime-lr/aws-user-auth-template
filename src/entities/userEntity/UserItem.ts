@@ -1,12 +1,12 @@
 import EActiveStatus from '../../common/enums/status.enum';
 import roles from '../../common/enums/roles.enum';
-import { IUserTableItem } from '../../common/interfaces/IUser';
+import { iUserTableItem } from '../../common/interfaces/IUser';
 import iUserItemDeps from './interfaces/UserItemDeps';
 import { eTableTypes } from '../../common/enums/tableTypes';
 import inEnumerator from '../../common/utils/inEnumerator';
 
 const UserItemObject = ({ dateLibrary, dynamooseSchema }: iUserItemDeps) =>
-  class UserItem implements IUserTableItem {
+  class UserItem implements iUserTableItem {
     pk!: string;
 
     sk!: string;
@@ -79,6 +79,10 @@ const UserItemObject = ({ dateLibrary, dynamooseSchema }: iUserItemDeps) =>
       if (!inEnumerator(EActiveStatus, this.status)) {
         this.status = EActiveStatus.DISABLED;
       }
+    }
+
+    get() {
+      return this;
     }
 
     static getDynamooseModel() {

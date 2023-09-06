@@ -1,12 +1,12 @@
 import adapterCommonDeps from '../../common/adapterCommonDeps';
-import deleteUserVerificationAdapterInstance from './updateUserVerificationAdapter';
+import updateUserVerificationAdapterInstance from './updateUserVerificationAdapter';
 import { updateItemTableInfra } from '../../../infrastructure/tableInfra/index';
 import UserVerification from '../../../entities/userVerification/index';
 
-const deleteUserVerificationAdapter = deleteUserVerificationAdapterInstance({
+const updateUserVerificationAdapter = updateUserVerificationAdapterInstance({
   ...adapterCommonDeps,
   updateItemTableInfra,
   UserVerification,
 });
 
-export default deleteUserVerificationAdapter;
+export default updateUserVerificationAdapter;

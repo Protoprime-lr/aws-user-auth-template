@@ -1,3 +1,4 @@
+import { iUserTableItem } from '../../../common/interfaces/IUser';
 import {
   iGetUserByKeyAdapterDeps,
   iGetUserByKeyAdapterInput,
@@ -5,7 +6,7 @@ import {
 
 const getUserByKeyAdapterInstance =
   (dependencies: iGetUserByKeyAdapterDeps) =>
-  async (input: iGetUserByKeyAdapterInput) => {
+  async (input: iGetUserByKeyAdapterInput): Promise<iUserTableItem> => {
     const {
       ErrorHandler,
       queryItemTableInfra,

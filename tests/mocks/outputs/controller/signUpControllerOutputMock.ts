@@ -7,25 +7,28 @@ export const signUpControllerOutputMock409 = {
 };
 
 export const signUpControllerOutputMock200 = {
-  pk: 'USER#test@gmail.com',
-  sk: 'USER#data',
-  email: 'test@gmail.com',
-  status: 'ACTIVE',
-  creation_date: 1692666786,
-  role: 'default',
-  type: 'USER',
-  contact_info: {
-    address: {
-      city: 'string',
-      province: 'string',
-      country: 'string',
-      street: 'string',
-      neighbor: 'string',
+  status: 201,
+  body: {
+    pk: 'USER#test@gmail.com',
+    sk: 'USER#data',
+    email: 'test@gmail.com',
+    status: 'ACTIVE',
+    creation_date: 1693974034,
+    role: 'default',
+    type: 'USER',
+    contact_info: {
+      address: {
+        city: 'string',
+        province: 'string',
+        country: 'string',
+        street: 'string',
+        neighbor: 'string',
+      },
+      phone_number: {
+        country_code: '+string',
+        number: 'string',
+      },
     },
-    phone_number: {
-      country_code: '+string',
-      number: 'string',
-    },
+    verified: false,
   },
-  verified: false,
 };

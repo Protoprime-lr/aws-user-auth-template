@@ -7,5 +7,5 @@ export interface iSendVerifyEmailDomainInput {
 }
 export interface iSendVerifyEmailDomainDeps extends iCommonDependencies {
   sendEmailAdapter: typeof sendEmailAdapter;
-  userVerificationAdapter: typeof createUserVerificationAdapter;
+  createUserVerificationAdapter: typeof createUserVerificationAdapter;
 }

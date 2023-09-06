@@ -27,7 +27,7 @@ export interface iUserLoginInput {
 
 export type iUserItem = iUserLoginInput & iUserPersonalData;
 
-export interface IUserTableItem extends iUserItem {
+export interface iUserTableItem extends iUserItem {
   status?: EActiveStatus;
   creation_date?: number;
   verified?: boolean;
@@ -37,7 +37,7 @@ export interface IUserTableItem extends iUserItem {
   role?: roles;
 }
 
-export interface IUserById {
+export interface iUserById {
   pk: string;
   sk: string;
 }

@@ -6,7 +6,7 @@ import createUserVerificationAdapter from '../../adapters/userVerificationAdapte
 const sendVerifyEmailDomain = sendVerifyEmailDomainInstance({
   ...domainCommonDeps,
   sendEmailAdapter,
-  userVerificationAdapter: createUserVerificationAdapter,
+  createUserVerificationAdapter,
 });
 
 export default sendVerifyEmailDomain;

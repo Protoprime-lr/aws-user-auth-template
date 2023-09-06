@@ -27,7 +27,7 @@ const signUpControllerInstance =
         email: newUser.email,
       });
 
-      return newUser;
+      return ResponseEntity.success(statusCodes.CREATED, newUser);
     } catch (error) {
       const customError = ErrorHandler({
         message: error.message?.message ?? error.message,

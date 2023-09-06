@@ -4,7 +4,7 @@ import { queryItemTableInfra } from '../../../infrastructure/tableInfra/index';
 import UserVerification from '../../../entities/userVerification/index';
 import UsersCacheTableIndexes from '../../../common/enums/UsersCacheTableIndexes';
 
-const deleteUserVerificationAdapter = getUserVerificationAdapterInstance({
+const getUserVerificationAdapter = getUserVerificationAdapterInstance({
   ...adapterCommonDeps,
   queryItemTableInfra,
   UserVerification,
@@ -12,4 +12,4 @@ const deleteUserVerificationAdapter = getUserVerificationAdapterInstance({
   UsersCacheTableIndexes,
 });
 
-export default deleteUserVerificationAdapter;
+export default getUserVerificationAdapter;

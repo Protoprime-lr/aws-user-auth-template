@@ -13,3 +13,19 @@ signUp:
         path: /users/signup
         method: post
         cors: true
+
+verifyEmail:
+  handler: src/handler/verifyEmail.handler
+  description: 'Verify Users Email'
+  name: ${file(resources/index.json):verify-users-email}
+  timeout: 25
+  logRetentionInDays: 14
+  iamRoleStatementsInherit: true
+  iamRoleStatementsName: ${file(resources/index.json):verify-users-email}
+  iamRoleStatements: ${file(resources/iamRoleStatements/verifyEmail.yml)}
+  provisionedConcurrency: ${self:custom.provisionedConcurrency.${self:provider.stage}, 0}
+  events:
+    - httpApi:
+        path: /users/verification/{id}
+        method: post
+        cors: true

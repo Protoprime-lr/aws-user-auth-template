@@ -58,7 +58,6 @@ export const queryTableItem =
       }
       const response = await Model.exec();
 
-      console.log('MARTIN_LOG=> response', JSON.stringify(response));
       return response;
     } catch (error) {
       throw ErrorHandler({

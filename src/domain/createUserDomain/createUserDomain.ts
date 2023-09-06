@@ -37,7 +37,7 @@ const createUserDomainInstance =
 
       userItem.password = await encryptPassword(userItem.password);
 
-      const adapterResponse = await createUserAdapter({
+      const adapterResponse: any = await createUserAdapter({
         payload: input.payload,
       });
 

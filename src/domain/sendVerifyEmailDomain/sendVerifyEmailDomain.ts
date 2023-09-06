@@ -9,14 +9,14 @@ const sendVerifyEmailDomainInstance =
     const {
       ErrorHandler,
       sendEmailAdapter,
-      userVerificationAdapter,
+      createUserVerificationAdapter,
       DefaultErrorName,
       ErrorCodes,
       ErrorLayer,
       statusCodes,
     } = dependencies;
     try {
-      const userVerification = await userVerificationAdapter(input);
+      const userVerification = await createUserVerificationAdapter(input);
 
       const response = await sendEmailAdapter({
         destination: input.email,
