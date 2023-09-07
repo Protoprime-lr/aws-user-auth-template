@@ -7,10 +7,5 @@ export interface iSendEmailAdapterDeps extends iCommonDependencies {
 }
 
 export interface iSendEmailAdapterInput {
-  message: {
-    text?: string;
-    html?: string;
-  };
-  title: string;
-  destination: string | string[];
+  email: string;
 }

@@ -3,12 +3,10 @@ import getUserByKeyAdapter from '../../../adapters/usersAdapters/getUserByKeyAda
 import iControllerCommonInput from '../../../common/interfaces/ICommandOutput';
 import ResponseEntity from '../../../entities/Response/index';
 import createUserDomain from '../../../domain/createUserDomain/index';
-import sendVerifyEmailDomain from '../../../domain/sendVerifyEmailDomain/index';
 
 export interface iSignUpControllerDeps extends iCommonDependencies {
   createUserDomain: typeof createUserDomain;
   getUserByKeyAdapter: typeof getUserByKeyAdapter;
-  sendVerifyEmailDomain: typeof sendVerifyEmailDomain;
   ResponseEntity: typeof ResponseEntity;
 }
 

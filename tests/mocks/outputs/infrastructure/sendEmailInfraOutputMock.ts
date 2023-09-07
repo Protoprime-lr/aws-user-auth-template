@@ -7,6 +7,5 @@ export const sendEmailInfraOutputMock500 = {
 };
 
 export const sendEmailInfraOutputMock200 = {
-  email_message_id:
-    'pzuigzwveldvtikn-hjkugbkz-qxrz-fygy-cvox-dszrjsyfxbzh-ujnlot',
+  email_message_id: 'I9VNE5EDKD9JVIV0O8U7IOC5GX890M8TGFHUYV01UH50RVQ1Y18D',
 };

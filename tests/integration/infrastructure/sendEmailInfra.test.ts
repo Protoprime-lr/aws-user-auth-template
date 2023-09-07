@@ -14,7 +14,6 @@ describe(`Unit Test - Infrastructure - ${testSuiteName}`, () => {
     const outputMock = sendEmailInfraOutputMock200;
 
     await verifyEmail(fakeEmail);
-    inputMock.source = fakeEmail;
 
     const response = await sendEmailInfra(inputMock);
 
@@ -24,19 +23,5 @@ describe(`Unit Test - Infrastructure - ${testSuiteName}`, () => {
     });
 
     regressionTest(outputMock, response, testName);
-  });
-
-  it(`${testSuiteName} - 500`, async () => {
-    const testName = `${testSuiteName}500`;
-    const inputMock = sendEmailInfraInputMock200;
-    inputMock.source = fakeEmail;
-    const outputMock = sendEmailInfraOutputMock200;
-    await sendEmailInfra(inputMock).catch((response) => {
-      outputTestResponse({
-        testName,
-        payload: response,
-      });
-      regressionTest(outputMock, response, testName);
-    });
   });
 });

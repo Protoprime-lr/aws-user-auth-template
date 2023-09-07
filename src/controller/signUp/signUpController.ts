@@ -9,7 +9,6 @@ const signUpControllerInstance =
   async (input: iSignUpControllerInput) => {
     const {
       createUserDomain,
-      sendVerifyEmailDomain,
       ErrorHandler,
       ErrorCodes,
       DefaultErrorName,
@@ -23,9 +22,6 @@ const signUpControllerInstance =
       const { body: inputPayload } = input;
 
       const newUser = await createUserDomain({ payload: inputPayload });
-      await sendVerifyEmailDomain({
-        email: newUser.email,
-      });
 
       return ResponseEntity.success(statusCodes.CREATED, newUser);
     } catch (error) {

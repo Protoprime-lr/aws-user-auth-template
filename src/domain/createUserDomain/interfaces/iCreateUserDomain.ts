@@ -1,3 +1,4 @@
+import sendVerificationEmailAdapter from '../../../adapters/sendEmailAdapter';
 import createUserAdapter from '../../../adapters/usersAdapters/createUserAdapter';
 import getUserByKeyAdapter from '../../../adapters/usersAdapters/getUserByKeyAdapter';
 import { iUserItem } from '../../../common/interfaces/IUser';
@@ -11,4 +12,5 @@ export interface iCreateUserDomainDeps extends iCommonDependencies {
   createUserAdapter: typeof createUserAdapter;
   getUserByKeyAdapter: typeof getUserByKeyAdapter;
   encryptPassword: typeof encryptPassword;
+  sendVerificationEmailAdapter: typeof sendVerificationEmailAdapter;
 }

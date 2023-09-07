@@ -5,19 +5,12 @@ frameworkVersion: '>=2'
 
 custom:
   stackPrefix: ${self:service}-${self:provider.stage}
-  userPoolId: !Ref UserPool
   config: ${file(config/index.js)}
-
-  cognito:
-    groupName:
-      default: 'default'
-      moderators: 'moderators'
-      admins: 'admins'
 
   # Prune
   prune:
     automatic: true
-    prod: 10
+    prod: 10cl
     develop: 1
     staging: 2
     number: 2
@@ -45,15 +38,7 @@ provider:
       statements:
         - Effect: Allow
           Action:
-            - 'xray:PutTraceSegments'
-            - 'xray:PutTelemetryRecords'
-          Resource: '*'
-        - Effect: Allow
-          Action:
-            - cognito-idp:AdminInitiateAuth
-            - cognito-idp:AdminCreateUser
-            - cognito-idp:AdminSetUserPassword
-            - cognito-idp:AdminAddUserToGroup
+            - dynamodb:DescribeTable
           Resource: '*'
   environment:
     SERVICE: ${self:service}
@@ -61,9 +46,6 @@ provider:
     ACCOUNT_ID: ${self:provider.accountId}
     LOG_LEVEL: DEBUG
     OWNER_PROJECT_NAME: 'Protoprime'
-    USERPOOL_ID: ${self:custom.userPoolId}
-    USERPOOL_CLIENT_ID: !Ref UserClient
-    TABLE_NAME: ${file(resources/index.json):users_table_name}
 
 package:
   individually: false

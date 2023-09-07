@@ -3,6 +3,7 @@
     "user_client_name": "${self:custom.stackPrefix}-userClient",
     "signup-users": "${self:custom.stackPrefix}-signUp",
     "verify-users-email": "${self:custom.stackPrefix}-verifyEmail",
+    "user-email-service":"${self:custom.stackPrefix}-userEmail",
     "verify-token": "${self:custom.stackPrefix}-verifyToken",
     "signin-users": "${self:custom.stackPrefix}-signIn",
     "profile-users": "${self:custom.stackPrefix}-profile",

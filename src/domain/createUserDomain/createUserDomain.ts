@@ -10,6 +10,7 @@ const createUserDomainInstance =
     const {
       createUserAdapter,
       getUserByKeyAdapter,
+      sendVerificationEmailAdapter,
       ErrorHandler,
       DefaultErrorName,
       ErrorCodes,
@@ -40,7 +41,7 @@ const createUserDomainInstance =
       const adapterResponse: any = await createUserAdapter({
         payload: input.payload,
       });
-
+      await sendVerificationEmailAdapter({ email: userItem.email });
       delete adapterResponse.password;
 
       return adapterResponse;

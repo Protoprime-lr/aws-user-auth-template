@@ -71,4 +71,26 @@ module.exports = {
       });
     }
   },
+  verifyEmail: async (params, eventMeta) => {
+    try {
+      const publishParams = {
+        EmailAddress: params.email,
+      };
+
+      console.log('MARTIN_LOG>=> SES params', JSON.stringify(publishParams));
+      const response = await ses
+        .verifyEmailAddress(publishParams)
+        .promise()
+        .catch((error) => {
+          throw error;
+        });
+      console.log('MARTIN_LOG>=> SES response', JSON.stringify(response));
+      return { email_message_id: response.ResponseMetadata?.RequestId };
+    } catch (error) {
+      throw FaultHandled.captureUnhanlded(error, {
+        code: 'VERIFY EMAIL',
+        layer: 'VERIFY EMAIL LOCAL_STACK',
+      });
+    }
+  },
 };

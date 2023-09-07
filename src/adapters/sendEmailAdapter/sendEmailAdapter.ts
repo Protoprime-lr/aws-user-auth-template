@@ -21,10 +21,7 @@ const sendEmailAdapterInstance =
           message: 'Missing System Email',
         };
       }
-      const response = sendEmailInfra({
-        ...input,
-        source: sourceEmail,
-      });
+      const response = sendEmailInfra(input);
       return response;
     } catch (error) {
       throw ErrorHandler({
